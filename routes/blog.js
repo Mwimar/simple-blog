@@ -12,10 +12,6 @@ router.get("/posts", function (req, res) {
   res.render("posts-list");
 });
 
-// router.get("/new-posts", function (req, res) {
-//   res.render("create-posts");
-// });
-
 router.get("/new-posts", async function (req, res) {
   const [authors] = await dbase.query("SELECT * FROM authors");
   res.render("create-posts", { authors: authors });
