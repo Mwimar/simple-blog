@@ -48,6 +48,7 @@ router.get("/posts/:id", async function (req, res) {
   WHERE posts.id=?
   `;
   const [posts] = await dbase.query(query, [req.params.id]);
+  console.log(posts);
 
   // if (!posts || posts.length === 0) {
   //   return res.status(404).render("404");
