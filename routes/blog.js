@@ -30,8 +30,8 @@ router.post("/posts", async function (req, res) {
     req.body.author,
   ];
 
-  console.log(data);
-  console.log(req.body);
+  // console.log(data);
+  // console.log(req.body);
 
   await dbase.query(
     "INSERT INTO posts (title, summary, body, author_id) VALUES (?, ?, ?, ?)",
