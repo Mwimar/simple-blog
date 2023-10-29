@@ -42,17 +42,18 @@ router.post("/posts", async function (req, res) {
 
 router.get("/posts/:id", async function (req, res) {
   const query = `
-  SELECT posts.*, authors.name AS author_name authors.email AS author_email FROM posts
+  SELECT posts.*, authors.name AS author_name, authors.email AS author_email FROM posts
   INNER JOIN authors ON posts.author_id= authors.id 
   
-  WHERE id=?
+  WHERE posts.id=?
   `;
   const [posts] = await dbase.query(query, [req.params.id]);
 
-  if (!posts || posts.length === 0) {
-    return res.status(404).render("404");
-  }
-  res.render("post-detail", { posts: posts[0] });
+  // if (!posts || posts.length === 0) {
+  //   return res.status(404).render("404");
+  // }
+  console.log(query);
+  res.render("post-detail", { post: posts[0] });
 });
 
 module.exports = router;
