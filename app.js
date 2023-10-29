@@ -5,11 +5,12 @@ const express = require("express");
 const blogRoutes = require("./routes/blog");
 
 const app = express();
+app.use(express.json());
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.set(express.urlencoded({ extended: true })); //parsing incoming request bodies
+app.use(express.urlencoded({ extended: true })); //parsing incoming request bodies
 
 app.use(express.static("public"));
 
