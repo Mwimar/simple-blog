@@ -70,15 +70,16 @@ router.get("/posts/:id", async function (req, res) {
 
 router.get("/posts/:id/edit", async function (req, res) {
   const query = `
-  SELECT FROM posts WHERE id=?
+  SELECT * FROM posts WHERE id=?
   `;
+
   const [posts] = await dbase.query(query, [req.params.id]);
 
   if (!posts || posts.length === 0) {
     return res.status(404).render("404");
   }
 
-  res.render("update-post", { post: posts });
+  res.render("update-post", { post: posts[0] });
 });
 
 module.exports = router;
